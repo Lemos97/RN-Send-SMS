@@ -248,6 +248,9 @@ typings/
 # Optional npm cache directory
 .npm
 
+# NPMRC
+.npmrc
+
 # Optional eslint cache
 .eslintcache
 
