@@ -41,6 +41,11 @@ captures/
 
 # IntelliJ
 *.iml
+build/
+.idea
+.gradle
+local.properties
+*.iml
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
