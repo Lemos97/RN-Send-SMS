@@ -1,6 +1,6 @@
 # react-native-send-sms
 
-**Disclaimer: Android Only** 
+**Disclaimer: Android Only**
 
 iOS version probably in a future release.
 
@@ -15,7 +15,7 @@ iOS version probably in a future release.
 ## Usage
 
 ```javascript
-import SendSms from "react-native-send-sms";
+import SendSms from "@lemos97/rn-send-sms";
 
 // TODO: What to do with the module?
 SendSms.send(phone_number, message, () => callback);
