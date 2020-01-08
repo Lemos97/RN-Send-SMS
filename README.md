@@ -1,6 +1,8 @@
 # react-native-send-sms
 
-**Disclaimer: Android Only**
+**Disclaimer: Android Only** 
+
+iOS version probably in a future release.
 
 ## Getting started
 
