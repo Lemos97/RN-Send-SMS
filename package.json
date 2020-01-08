@@ -1,7 +1,7 @@
 {
   "name": "@lemos97/rn-send-sms",
   "title": "React Native Send Sms",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Native Module for react native in order to send sms using the SIM card on the phone.(Android Only)",
   "main": "index.js",
   "scripts": {

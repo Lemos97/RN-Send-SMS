@@ -12,7 +12,7 @@ iOS version probably in a future release.
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-send-sms`
+`$ react-native link @lemos97/rn-send-sms`
 
 ## Usage
 
