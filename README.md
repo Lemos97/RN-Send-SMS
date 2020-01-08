@@ -6,7 +6,7 @@ iOS version probably in a future release.
 
 ## Getting started
 
-`$ npm install react-native-send-sms --save`
+`$ npm install @lemos97/rn-send-sms --save`
 
 ### Mostly automatic installation
 
