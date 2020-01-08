@@ -1,5 +1,5 @@
 {
-  "name": "react-native-send-sms",
+  "name": "rn-send-sms",
   "title": "React Native Send Sms",
   "version": "1.0.0",
   "description": "Native Module for react native in order to send sms using the SIM card on the phone.(Android Only)",
@@ -9,8 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-send-sms.git",
-    "baseUrl": "https://github.com/github_account/react-native-send-sms"
+    "url": "git+https://github.com/github_account/rn-send-sms.git",
+    "baseUrl": "https://github.com/github_account/rn-send-sms"
   },
   "keywords": [
     "react-native"
