@@ -3,16 +3,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.reactlibrary</groupId>
-  <artifactId>react-native-send-sms</artifactId>
+  <artifactId>rn-send-sms</artifactId>
   <version>1.0.0</version>
   <packaging>aar</packaging>
   <name>React Native Send Sms</name>
   <description>Native Module for react native in order to send sms using the SIM card on the phone.(Android Only)</description>
-  <url>https://github.com/github_account/react-native-send-sms</url>
+  <url>https://github.com/Lemos97/rn-send-sms</url>
   <licenses>
     <license>
       <name>MIT</name>
-      <url>https://github.com/github_account/react-native-send-sms/blob/master/LICENSE</url>
+      <url>https://github.com/Lemos97/rn-send-sms/blob/master/LICENSE</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
