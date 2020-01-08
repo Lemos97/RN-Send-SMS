@@ -1,5 +1,7 @@
 # react-native-send-sms
 
+[![npm version](https://badge.fury.io/js/%40lemos97%2Frn-send-sms.svg)](https://badge.fury.io/js/%40lemos97%2Frn-send-sms)
+
 **Disclaimer: Android Only**
 
 iOS version probably in a future release.
