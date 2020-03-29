@@ -1,8 +1,12 @@
 package com.reactlibrary;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.telephony.SmsManager;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -37,10 +41,64 @@ public class SendSmsModule extends ReactContextBaseJavaModule {
         boolean checkPermissions = Utils.hasSendSMSPermissions(context);
         if (!checkPermissions)
         {
+            String SENT = "SMS_SENT";
+            String DELIVERED = "SMS_DELIVERED";
+            PendingIntent sentPI = PendingIntent.getBroadcast(context, 0, new Intent(SENT), 0);
+            PendingIntent deliveredPI = PendingIntent.getBroadcast(context, 0,new Intent(DELIVERED), 0);
+
+            BroadcastReceiver sendedBroadcastReceiver = new BroadcastReceiver()
+            {
+                @Override
+                public void onReceive(Context context, Intent intent)
+                {
+                    switch(getResultCode())
+                    {
+                        case Activity.RESULT_OK:
+                            break;
+                        case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                            break;
+                        case SmsManager.RESULT_ERROR_NO_SERVICE:
+                            break;
+                        case SmsManager.RESULT_ERROR_NULL_PDU:
+                            break;
+                        case SmsManager.RESULT_ERROR_RADIO_OFF:
+                            break;
+                    }
+                }
+            };
+
+            BroadcastReceiver deliveredBroadcastReceiver = new BroadcastReceiver()
+            {
+
+                @Override
+                public void onReceive(Context context, Intent intent)
+                {
+                    switch(getResultCode())
+                    {
+                        case Activity.RESULT_OK:
+                            break;
+                        case Activity.RESULT_CANCELED:
+                            break;
+                    }
+                }
+            };
+
+            // ---when the SMS has been sent---
+            context.registerReceiver(sendedBroadcastReceiver, new IntentFilter(SENT));
+
+            // ---when the SMS has been delivered---
+            context.registerReceiver( deliveredBroadcastReceiver, new IntentFilter(DELIVERED));
+
+
             SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(phone_to, null, message, null, null);
+            sms.sendTextMessage(phone_to, null, message, sentPI, deliveredPI);
+
+            callback.invoke("Sent SMS to: " + phone_to);
+
+            context.unregisterReceiver(sendedBroadcastReceiver);
+            context.unregisterReceiver(deliveredBroadcastReceiver);
         }
 
-        callback.invoke("Sent SMS to: " + phone_to);
+
     }
 }
