@@ -35,7 +35,7 @@ public class SendSmsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void send(String phone_to, String message, Callback callback) {
+    public void send(final String phone_to, String message, final Callback callback) {
         ReactApplicationContext context = getContext();
 
         boolean checkPermissions = Utils.hasSendSMSPermissions(context);
@@ -54,14 +54,19 @@ public class SendSmsModule extends ReactContextBaseJavaModule {
                     switch(getResultCode())
                     {
                         case Activity.RESULT_OK:
+                            callback.invoke("SMS sent to: " + phone_to);
                             break;
                         case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                            callback.invoke("SMS failed to be sent : " + phone_to + " the Error being: " + SmsManager.RESULT_ERROR_GENERIC_FAILURE);
                             break;
                         case SmsManager.RESULT_ERROR_NO_SERVICE:
+                            callback.invoke("SMS failed to be sent : " + phone_to + " the Error being: " + SmsManager.RESULT_ERROR_NO_SERVICE);
                             break;
                         case SmsManager.RESULT_ERROR_NULL_PDU:
+                            callback.invoke("SMS failed to be sent : " + phone_to + " the Error being: " + SmsManager.RESULT_ERROR_NULL_PDU);
                             break;
                         case SmsManager.RESULT_ERROR_RADIO_OFF:
+                            callback.invoke("SMS failed to be sent : " + phone_to + " the Error being: " + SmsManager.RESULT_ERROR_RADIO_OFF);
                             break;
                     }
                 }
@@ -76,8 +81,11 @@ public class SendSmsModule extends ReactContextBaseJavaModule {
                     switch(getResultCode())
                     {
                         case Activity.RESULT_OK:
+                            callback.invoke("SMS delivered to: " + phone_to);
+
                             break;
                         case Activity.RESULT_CANCELED:
+                            callback.invoke("SMS was not delivered to: " + phone_to + " the Error being :" + Activity.RESULT_CANCELED);
                             break;
                     }
                 }
@@ -89,16 +97,11 @@ public class SendSmsModule extends ReactContextBaseJavaModule {
             // ---when the SMS has been delivered---
             context.registerReceiver( deliveredBroadcastReceiver, new IntentFilter(DELIVERED));
 
-
             SmsManager sms = SmsManager.getDefault();
             sms.sendTextMessage(phone_to, null, message, sentPI, deliveredPI);
-
-            callback.invoke("Sent SMS to: " + phone_to);
 
             context.unregisterReceiver(sendedBroadcastReceiver);
             context.unregisterReceiver(deliveredBroadcastReceiver);
         }
-
-
     }
 }
